@@ -139,11 +139,16 @@
       "required": true,
       "types": [
         {
-          "type": "string_literal",
+          "type": "localized_text",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "localized_text",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "normal_line",
@@ -189,6 +194,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "string_literal",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "token_chain",
@@ -357,10 +367,6 @@
   },
   {
     "type": "null",
-    "named": true
-  },
-  {
-    "type": "string_literal",
     "named": true
   },
   {

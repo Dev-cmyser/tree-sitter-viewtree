@@ -338,9 +338,13 @@
         },
         {
           "type": "SYMBOL",
-          "name": "string_literal"
+          "name": "localized_text"
         }
       ]
+    },
+    "localized_text": {
+      "type": "PATTERN",
+      "value": "\\\\[^\\n\\r]*"
     },
     "string_literal": {
       "type": "PATTERN",

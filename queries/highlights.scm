@@ -22,10 +22,16 @@
 ; Dictionary markers
 (dict_marker) @punctuation.bracket
 
-; Localized strings (unified token)
+; Property modifiers
+(property_modifier) @punctuation.special
+
+; Localized strings - entire node as special
 (localized_string) @string.special
 
-; String literals
+; Localized text (inside @ strings) - also special
+(localized_text) @string.special
+
+; String literals - general rule
 (string_literal) @string
 
 ; Numbers
@@ -36,9 +42,6 @@
 
 ; Null
 (null) @constant.builtin
-
-; Property modifiers (separate tokens)
-(property_modifier) @punctuation.special
 
 ; Plain identifiers (properties, variables)
 (identifier) @variable
