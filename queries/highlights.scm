@@ -17,13 +17,13 @@
 (typed_dict) @type.builtin
 
 ; List marker
-(list_marker) @punctuation.bracket
+(list_marker) @keyword
 
 ; Dictionary markers
-(dict_marker) @punctuation.bracket
+(dict_marker) @keyword
 
 ; Property modifiers
-(property_modifier) @punctuation.special
+(property_modifier) @operator
 
 ; Localized strings - entire node as special
 (localized_string) @string.special
