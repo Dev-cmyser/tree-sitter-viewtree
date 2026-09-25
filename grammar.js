@@ -85,11 +85,11 @@ module.exports = grammar({
         // Модификатор свойства
         property_modifier: $ => choice('?', '!', '*'),
 
+        // Числа
+        number: $ => choice(/[+-]?\d*\.\d+/, /[+-]?\d+n?/, 'NaN', '+NaN', 'Infinity', '+Infinity', '-Infinity'),
+
         // Идентификатор (поддерживает Unicode символы включая эмодзи)
         identifier: $ => /-*[\p{L}\p{Emoji}_][\p{L}\p{Emoji}\p{N}_/-]*/u,
-
-        // Числа
-        number: $ => choice(token(prec(1, /[+-]?\d*\.\d+/)), token(prec(1, /[+-]?\d+n?/)), 'NaN', 'Infinity', '-Infinity'),
 
         // Булевы значения
         boolean: $ => choice('true', 'false'),

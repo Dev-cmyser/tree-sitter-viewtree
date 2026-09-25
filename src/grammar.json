@@ -401,35 +401,16 @@
         }
       ]
     },
-    "identifier": {
-      "type": "PATTERN",
-      "value": "-*[\\p{L}\\p{Emoji}_][\\p{L}\\p{Emoji}\\p{N}_/-]*",
-      "flags": "u"
-    },
     "number": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "PATTERN",
-              "value": "[+-]?\\d*\\.\\d+"
-            }
-          }
+          "type": "PATTERN",
+          "value": "[+-]?\\d*\\.\\d+"
         },
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "PATTERN",
-              "value": "[+-]?\\d+n?"
-            }
-          }
+          "type": "PATTERN",
+          "value": "[+-]?\\d+n?"
         },
         {
           "type": "STRING",
@@ -437,13 +418,26 @@
         },
         {
           "type": "STRING",
+          "value": "+NaN"
+        },
+        {
+          "type": "STRING",
           "value": "Infinity"
+        },
+        {
+          "type": "STRING",
+          "value": "+Infinity"
         },
         {
           "type": "STRING",
           "value": "-Infinity"
         }
       ]
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "-*[\\p{L}\\p{Emoji}_][\\p{L}\\p{Emoji}\\p{N}_/-]*",
+      "flags": "u"
     },
     "boolean": {
       "type": "CHOICE",

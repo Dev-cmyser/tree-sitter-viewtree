@@ -314,6 +314,14 @@
     "named": false
   },
   {
+    "type": "+Infinity",
+    "named": false
+  },
+  {
+    "type": "+NaN",
+    "named": false
+  },
+  {
     "type": "-Infinity",
     "named": false
   },
