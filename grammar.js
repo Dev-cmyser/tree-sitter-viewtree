@@ -59,7 +59,7 @@ module.exports = grammar({
         comment_marker: $ => '-',
 
         // Типизированный список - /Type
-        typed_list: $ => seq('/', $.identifier),
+        typed_list: $ => seq('/', choice($.identifier, $.component_name)),
 
         // Типизированный словарь - *Type или ^Type
         typed_dict: $ => seq(choice('*', '^'), $.component_name),
@@ -80,16 +80,16 @@ module.exports = grammar({
         string_literal: $ => /\\[^\n\r]*/,
 
         // Идентификатор с модификатором
-        identifier_with_modifier: $ => seq($.identifier, $.property_modifier),
+        identifier_with_modifier: $ => seq($.identifier, $.property_modifier, optional($.identifier)),
 
         // Модификатор свойства
         property_modifier: $ => choice('?', '!', '*'),
 
         // Идентификатор (поддерживает Unicode символы включая эмодзи)
-        identifier: $ => /[\p{L}\p{Emoji}_][\p{L}\p{Emoji}\p{N}_]*/u,
+        identifier: $ => /-*[\p{L}\p{Emoji}_][\p{L}\p{Emoji}\p{N}_/-]*/u,
 
         // Числа
-        number: $ => choice(/[+-]?\d+\.\d+/, /[+-]?\d+/, 'NaN', 'Infinity', '-Infinity'),
+        number: $ => choice(token(prec(1, /[+-]?\d*\.\d+/)), token(prec(1, /[+-]?\d+n?/)), 'NaN', 'Infinity', '-Infinity'),
 
         // Булевы значения
         boolean: $ => choice('true', 'false'),

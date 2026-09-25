@@ -62,21 +62,16 @@ bool tree_sitter_viewtree_external_scanner_scan(void *payload, TSLexer *lexer, c
 
     // Handle NEWLINE - this actually consumes characters
     if (valid_symbols[NEWLINE]) {
-        if (lexer->lookahead == '\n') {
-            advance(lexer);
-            if (lexer->lookahead == '\r') {
-                advance(lexer);
+        if (lexer->lookahead == '\n' || lexer->lookahead == '\r') {
+            while (lexer->lookahead == '\n' || lexer->lookahead == '\r') {
+                while (lexer->lookahead == '\n' || lexer->lookahead == '\r') {
+                    advance(lexer);
+                }
+                lexer->mark_end(lexer);
+                while (lexer->lookahead == '\t' || lexer->lookahead == ' ') {
+                    advance(lexer);
+                }
             }
-            lexer->mark_end(lexer);
-            lexer->result_symbol = NEWLINE;
-            return true;
-        }
-        if (lexer->lookahead == '\r') {
-            advance(lexer);
-            if (lexer->lookahead == '\n') {
-                advance(lexer);
-            }
-            lexer->mark_end(lexer);
             lexer->result_symbol = NEWLINE;
             return true;
         }

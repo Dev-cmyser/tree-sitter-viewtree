@@ -281,8 +281,17 @@
           "value": "/"
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "component_name"
+            }
+          ]
         }
       ]
     },
@@ -360,6 +369,18 @@
         {
           "type": "SYMBOL",
           "name": "property_modifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -382,19 +403,33 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[\\p{L}\\p{Emoji}_][\\p{L}\\p{Emoji}\\p{N}_]*",
+      "value": "-*[\\p{L}\\p{Emoji}_][\\p{L}\\p{Emoji}\\p{N}_/-]*",
       "flags": "u"
     },
     "number": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[+-]?\\d+\\.\\d+"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "PATTERN",
+              "value": "[+-]?\\d*\\.\\d+"
+            }
+          }
         },
         {
-          "type": "PATTERN",
-          "value": "[+-]?\\d+"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "PATTERN",
+              "value": "[+-]?\\d+n?"
+            }
+          }
         },
         {
           "type": "STRING",
